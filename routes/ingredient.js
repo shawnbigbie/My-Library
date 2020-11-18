@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Ingredient = require('../models/Ingredient');
 
-//ROUTES//
+// Routes //
 router.get('/', async (req, res) => {
     try {
         const ingredients = await Ingredient.find()
@@ -61,5 +61,5 @@ router.get('/ingredientsByRecipe/:recipeID', async (req, res) => {
     }
 })
 
-//EXPORT
+// Export
 module.exports = router;

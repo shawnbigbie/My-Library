@@ -2,9 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Recipe = require('../models/Recipe');
 
-//Entered: /recipes
-
-//ROUTES//
+// Routes //
 router.get('/', async (req, res) => {
     try {
         const recipes = await Recipe.find()
@@ -65,5 +63,5 @@ router.patch('/directions', async (req, res) => {
     }
 })
 
-//EXPORT
+// Export
 module.exports = router;

@@ -6,26 +6,26 @@ const bodyParser = require('body-parser');
 const app = express();
 require('dotenv/config')
 
-// load routes
+// Load Routes
 const recipeRoute = require('./routes/recipe');
 const ingredientRoute = require('./routes/ingredient');
 const categoryRoute = require('./routes/category');
 
-// handlebars middleware
+// Handlebars Middleware
 app.engine('handlebars', exphbs({
     defaultLayout: 'main'
 
 }));
 app.set('view engine', 'handlebars');
 
-// body parser middleware
+// Body-Parser Middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// Static folder
+// Static Folder
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Routes
+// Default Route
 app.get('/', (req, res) => {
     const title='Welcome to ToDoNow!';
     res.render('index', {
@@ -38,7 +38,7 @@ app.use('/recipes', recipeRoute);
 app.use('/ingredients', ingredientRoute);
 app.use('/categories', categoryRoute);
 
-// Database
+// Connect to Database
 mongoose.connect(process.env.DB_CONNECTION,  { useNewUrlParser: true, useUnifiedTopology: true }, () =>
     console.log('Connected to DB')
 );

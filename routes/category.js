@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Category = require('../models/Category');
 
-//ROUTES//
+// Routes //
 router.get('/', async (req, res) => {
     try {
         const categories = await Category.find()
@@ -26,5 +26,5 @@ router.post('/', async (req, res) => {
     }
 });
 
-//EXPORT
+// Export
 module.exports = router;
