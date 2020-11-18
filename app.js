@@ -25,12 +25,13 @@ app.use(bodyParser.json());
 // Static Folder
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Default Route
+// Default Routes
 app.get('/', (req, res) => {
-    const title='Welcome to ToDoNow!';
-    res.render('index', {
-       title: title
-   });
+    res.render('index', {});
+});
+
+app.get('/list', (req,res) => {
+    res.render('list');
 });
 
 // Use Routes
