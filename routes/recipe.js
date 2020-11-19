@@ -1,67 +1,80 @@
 const express = require('express');
 const router = express.Router();
-const Recipe = require('../models/Recipe');
+const mongoose = require('mongoose');
+
+// Load Schema
+require('../models/Recipe');
+const Recipe = mongoose.model('recipes');
 
 // Routes //
-router.get('/', async (req, res) => {
-    try {
-        const recipes = await Recipe.find()
-        res.json(recipes);
-    }
-    catch(err) {
-        console.log(err)
-    }
+// Recipe Index Page
+// router.get('/', (req,res) => {
+//    Recipe.findAll().then(recipes => {
+//      res.render('recipes/index', {
+//        recipes:recipes
+//      })
+//    })
+//  });
+  
+// Add Recipe
+router.get('/add', (req,res) => {
+    res.render('recipes/add'); 
 });
 
-router.post('/', async (req, res) => {
-    try {
-        const recipe = new Recipe({
-            title: req.body.title,
-            directions: req.body.directions,
-            rating: req.body.rating,
-            category: req.body.category,
-            ingredients: []
+// process recipe form
+router.post('/', (req,res) => {
+    let errors = [];
+    
+    if (!req.body.title) {
+        errors.push({
+            text: 'Please add Recipe Title'
         })
-        const saveRecipe = await recipe.save();
-        res.json(saveRecipe);
     }
-    catch(err) {
-        console.log(err)
+    if (!req.body.rating) {
+        errors.push({
+            text: 'Please add a Rating'
+        })
     }
-});
+    if (!req.body.category) {
+        errors.push({
+            text: 'Please add Category'
+        })
+    }
+    if (!req.body.ingredients) {
+        errors.push({
+            text: 'Please add Ingredients Needed'
+        })
+    }
+    if (!req.body.directions) {
+        errors.push({
+        text: 'Please add Directions for Recipe'
+        })
+    }
+    
+    if (errors.length > 0) {
+      res.render('recipes/add', {
+        errors: errors,
+        title: req.body.title,
+        rating: req.body.rating,
+        category: req.body.category,
+        ingredients: req.body.ingredients,
+        directions: req.body.directions
+      });
+    } else {
+      const newRecipe = {
+        title: req.body.title,
+        rating: req.body.rating,
+        category: req.body.category,
+        ingredients: req.body.ingredients,
+        directions: req.body.directions
+      };
+      new Recipe(newRecipe).save().then(recipe => {
+        res.redirect('/');
+      })
+    }
+  });
 
-router.patch('/title', async (req, res) => {
-    console.log(req.body)
-    try {
-        const recipeUpdate = await Recipe.findOneAndUpdate({_id: req.body._id}, {$set: {title: req.body.title}});
-        res.json(recipeUpdate)
-    }
-    catch(error) {
-        console.log(error);
-    }
-});
-
-router.patch('/rating', async (req, res) => {
-    console.log(req.body)
-    try {
-        const recipeUpdate = await Recipe.findOneAndUpdate({_id: req.body._id}, {$set: {rating: req.body.rating}});
-        res.json(recipeUpdate)
-    }
-    catch(error) {
-        console.log(error);
-    }
-})
-
-router.patch('/directions', async (req, res) => {
-    console.log(req.body)
-    try {
-        const recipeUpdate = await Recipe.findOneAndUpdate({_id: req.body._id}, {$set: {directions: req.body.description}});
-        res.json(recipeUpdate)
-    }
-    catch(error) {
-        console.log(error);
-    }
-})
+  
 
 // Export
 module.exports = router;

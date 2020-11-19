@@ -1,0 +1,17 @@
+{{#each recipes}}
+  <div class="card card-body mb-2">
+    <h4>Recipe Name: {{title}}</h4>
+    <p>Rating: {{rating}}</p>
+    <p>Category: {{category}}</p>
+    <p>Ingredients Needed: {{ingredients}}</p>
+    <br>
+    <p>Directions: {{directions}}</p>
+    <a class="btn btn-dark btn-block mb-2" href="/recipes/edit/{{id}}">Edit</a>
+    <form method="post" action="/recipes/{{id}}?_method=DELETE">
+      <input type="hidden" name="_method" value="DELETE">
+      <input type="submit" class="btn btn-danger btn-block" value="Delete">
+    </form>
+  </div>
+{{else}}
+  <p>No recipe listed</p>
+{{/each}}

@@ -1,0 +1,31 @@
+{{#each errors}}
+  <div class="alert alert-danger">{{text}}</div>
+{{else}}
+{{/each}}
+
+<div class="card card-body">
+  <h3>Edit Recipe</h3>
+  <form action="/recipes/{{recipe.id}}?_method=PUT" method="post">
+    <input type="hidden" name="_method" value="PUT">
+    <div class="form-group">
+      <label for="title">Recipe Name</label>
+      <input class="form-control" name="title" type="text" value="{{recipe.title}}">
+    </div>
+    <div class="form-group">
+      <label for="rating">Rating</label>
+      <input class="form-control" name="rating" type="text" value="{{recipe.rating}}">
+    </div>
+    <div class="form-group">
+      <label for="category">Category</label>
+      <input class="form-control" name="category" type="text" value="{{recipe.category}}">
+    <div class="form-group">
+      <label for="ingredients">Ingredients Needed</label>
+      <input class="form-control" name="ingredients" type="text" value="{{recipe.ingredients}}">
+    </div>
+    <div class="form-group">
+      <label for="directions">Directions</label>
+      <textarea class="form-control" name="directions" type="text" value="{{recipe.directions}}"></textarea>
+    </div>
+    <button type="submit" class="btn btn-dark">Save Recipe</button>
+  </form>
+</div>
