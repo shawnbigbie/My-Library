@@ -1,17 +1,29 @@
+<div id="search-container">
+<h2>Search Recipes</h2>
+<form action="/recipes" method="GET">
+  <input type="text" name="title" placeholder="Recipe Name" style="text-align: center;" value="{{searchOptions.title}}">
+  <button type="submit">Search</button>
+</form>
+<br>
+<a href="/recipes/add" class="btn btn-dark btn-lg" id="add-button">Add Recipe</a>
+</div>
+
 {{#each recipes}}
-  <div class="card card-body mb-2">
-    <h4>Recipe Name: {{title}}</h4>
-    <p>Rating: {{rating}}</p>
-    <p>Category: {{category}}</p>
-    <p>Ingredients Needed: {{ingredients}}</p>
-    <br>
-    <p>Directions: {{directions}}</p>
-    <a class="btn btn-dark btn-block mb-2" href="/recipes/edit/{{id}}">Edit</a>
-    <form method="post" action="/recipes/{{id}}?_method=DELETE">
-      <input type="hidden" name="_method" value="DELETE">
-      <input type="submit" class="btn btn-danger btn-block" value="Delete">
-    </form>
-  </div>
+<div class="card card-body mb-2">
+  <h4>Recipe Name: {{title}}</h4>
+  <h6>Rating: {{rating}}</h6>
+  <h6>Category: {{category}}</h6>
+  <br>
+  <h4>Ingredients Needed:</h4> {{ingredients}}
+  <br>
+  <br>
+  <a class="btn btn-dark btn-block mb-2" href="/recipes/{{id}}">View Recipe Instructions</a>
+  <a class="btn btn-dark btn-block mb-2" href="/recipes/{{id}}/edit">Edit</a>
+  <form method="post" action="/recipes/{{id}}?_method=DELETE">
+    <button type="submit" class="btn btn-danger btn-block" value="Delete">Delete</button>
+  </form>
+</div>
+
 {{else}}
-  <p>No recipe listed</p>
+  <p>No recipes listed</p>
 {{/each}}

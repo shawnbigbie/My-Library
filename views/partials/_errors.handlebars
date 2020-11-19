@@ -1,8 +1,8 @@
-{{#if error}}
+{{#if errorMessage}}
   <div class="alert alert-danger">{{error}}</div>
 {{/if}}
 
-{{#each errors}}
+{{#each errorMessage}}
   <div class="alert alert-danger">{{text}}</div>
 {{else}}
 {{/each}}

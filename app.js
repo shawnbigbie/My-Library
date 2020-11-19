@@ -1,20 +1,30 @@
+// Package Varables
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
 const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
 const app = express();
+
+// Hide DB URL
 require('dotenv/config')
 
-// Load Routes
+// Bypass Handlebars Problem Displaying Data
+const Handlebars = require('handlebars')
+const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access')
+
+// Allows Put and Delete HTTP Requests
+const methodOverride = require('method-override')
+
+// Default Routes
 const recipeRoute = require('./routes/recipe');
 const ingredientRoute = require('./routes/ingredient');
 const categoryRoute = require('./routes/category');
 
 // Handlebars Middleware
 app.engine('handlebars', exphbs({
-    defaultLayout: 'main'
-
+    defaultLayout: 'main',
+    handlebars: allowInsecurePrototypeAccess(Handlebars)
 }));
 app.set('view engine', 'handlebars');
 
@@ -22,10 +32,13 @@ app.set('view engine', 'handlebars');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+// MethodOverride Middleware
+app.use(methodOverride('_method'))
+
 // Static Folder
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Default Routes
+// Default Index Route
 app.get('/', (req, res) => {
     res.render('index', {});
 });

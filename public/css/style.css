@@ -6,7 +6,8 @@
   body {
     background-image: url('../img/background.png');
     background-repeat: no-repeat;
-    background-size: 100% 1080px;
+    background-size: 100% 100%;
+    min-height: 1000px;
   }
   
   .bg-dark {
@@ -36,7 +37,13 @@
   .navbar-dark .navbar-nav .active > .nav-link, .navbar-dark .navbar-nav .nav-link.active,
   .navbar-dark .navbar-nav .nav-link.show, .navbar-dark .navbar-nav .show > .nav-link {
       color: rgb(255, 255, 255);
-  }    
+  }
+
+  .navbar-dark .navbar-toggler-icon {
+    background-image: url('../img/ham.png');
+    width: 30px;
+    height: 30px;
+  }
   
   .jumbotron {
       background-color: #ffffff;
@@ -49,7 +56,7 @@
   
   .card {
       color: #000000;
-      background-color: #ebebeb;
+      background-color: #ffffff;
   }
 
   .btn-dark {
@@ -58,4 +65,11 @@
 
   .btn-dark:hover {
     background-color: #0077ff;
+  }
+
+  #search-container {
+    display: block;
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 10px
   }
