@@ -19,7 +19,6 @@ const methodOverride = require('method-override')
 // Default Routes
 const recipeRoute = require('./routes/recipe');
 const ingredientRoute = require('./routes/ingredient');
-const categoryRoute = require('./routes/category');
 
 // Handlebars Middleware
 app.engine('handlebars', exphbs({
@@ -50,7 +49,6 @@ app.get('/list', (req,res) => {
 // Use Routes
 app.use('/recipes', recipeRoute);
 app.use('/ingredients', ingredientRoute);
-app.use('/categories', categoryRoute);
 
 // Connect to Database
 mongoose.connect(process.env.DB_CONNECTION,  { useNewUrlParser: true, useUnifiedTopology: true }, () =>
