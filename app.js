@@ -18,6 +18,7 @@ const methodOverride = require('method-override')
 
 // Default Routes
 const recipeRoute = require('./routes/recipe');
+const listRoute = require('./routes/list');
 const ingredientRoute = require('./routes/ingredient');
 
 // Handlebars Middleware
@@ -42,12 +43,9 @@ app.get('/', (req, res) => {
     res.render('index', {});
 });
 
-app.get('/list', (req,res) => {
-    res.render('list');
-});
-
 // Use Routes
 app.use('/recipes', recipeRoute);
+app.use('/lists', listRoute);
 app.use('/ingredients', ingredientRoute);
 
 // Connect to Database

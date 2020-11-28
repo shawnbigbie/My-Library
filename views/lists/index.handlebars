@@ -1,0 +1,28 @@
+<div id="search-container">
+    <h2>Search Lists</h2>
+    <form action="/lists" method="GET">
+    <input type="text" name="title" placeholder="List Name" style="text-align: center;" value="{{searchOptions.title}}">
+    <button type="submit">Search</button>
+    </form>
+    <br>
+    <a href="/lists/add" class="btn btn-dark btn-lg" id="add-button">Create List</a>
+</div>
+
+{{#each lists}}
+<div class="card card-body mb-2">
+  <h4>List Name: {{title}}</h4>
+  <h6>Status: {{status}}</h6>
+  <br>
+  <h4>Ingredients:</h4> {{ingredients}}
+  <br>
+  <br>
+  <a class="btn btn-dark btn-block mb-2" href="/lists/{{id}}">View list</a>
+  <a class="btn btn-dark btn-block mb-2" href="/lists/{{id}}/edit">Edit</a>
+  <form method="post" action="/lists/{{id}}?_method=DELETE">
+    <button type="submit" class="btn btn-danger btn-block" value="Delete">Delete</button>
+  </form>
+</div>
+
+{{else}}
+  <p>No lists listed</p>
+{{/each}}

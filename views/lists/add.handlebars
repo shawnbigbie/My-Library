@@ -1,0 +1,23 @@
+{{#each errors}}
+  <div class="alert alert-danger">{{text}}</div>
+{{else}}
+{{/each}}
+
+<div class="card card-body">
+  <h3>list</h3>
+  <form action="/lists" method="post">
+    <div class="form-group">
+      <label for="title">list Name</label>
+      <input class="form-control" name="title" type="text" required>
+    </div>
+    <div class="form-group">
+      <label for="status">Status</label>
+      <input class="form-control" name="status" type="text" required>
+    </div>
+    <div class="form-group">
+      <label for="ingredients">Ingredients</label>
+      <input class="form-control" name="ingredients" required>
+    </div>
+    <button type="submit" class="btn btn-dark">Create list</button>
+  </form>
+</div>
