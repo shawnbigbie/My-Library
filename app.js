@@ -21,16 +21,16 @@ mongoose.connect(process.env.DB_CONNECTION,  { useNewUrlParser: true, useUnified
     console.log('Connected to DB')
 );
 
+// Bypass Handlebars Problem Displaying Data
+const Handlebars = require('handlebars')
+const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access')
+
 // Handlebars Middleware
 app.engine('handlebars', exphbs({
     defaultLayout: 'main',
     handlebars: allowInsecurePrototypeAccess(Handlebars)
 }));
 app.set('view engine', 'handlebars');
-
-// Bypass Handlebars Problem Displaying Data
-const Handlebars = require('handlebars')
-const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access')
 
 // Body-Parser Middleware
 app.use(bodyParser.urlencoded({ extended: false }));
