@@ -7,16 +7,12 @@ const bodyParser = require('body-parser');
 const app = express();
 
 // Hide DB URL
-require('dotenv/config')
-
-// Bypass Handlebars Problem Displaying Data
-const Handlebars = require('handlebars')
-const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access')
+require('dotenv/config');
 
 // Allows Put and Delete HTTP Requests
 const methodOverride = require('method-override')
 
-// Default Routes
+// Load Routes
 const recipeRoute = require('./routes/recipe');
 const listRoute = require('./routes/list');
 
@@ -25,18 +21,6 @@ mongoose.connect(process.env.DB_CONNECTION,  { useNewUrlParser: true, useUnified
     console.log('Connected to DB')
 );
 
-// Server
-const PORT = process.env.PORT || 3000; 
-
-// Default Index Route
-app.get('/', (req,res) => {
-    res.render('index');
- });
-
-app.listen(PORT, () => {
-    console.log(`Recipe App located on port ${PORT}`)
-})
-
 // Handlebars Middleware
 app.engine('handlebars', exphbs({
     defaultLayout: 'main',
@@ -44,16 +28,32 @@ app.engine('handlebars', exphbs({
 }));
 app.set('view engine', 'handlebars');
 
+// Bypass Handlebars Problem Displaying Data
+const Handlebars = require('handlebars')
+const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access')
+
 // Body-Parser Middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+// Static Folder
+app.use(express.static(path.join(__dirname, 'public')));
+
 // MethodOverride Middleware
 app.use(methodOverride('_method'))
 
-// Static Folder
-app.use(express.static(path.join(__dirname, '/public')));
+// Default Index Route
+app.get('/', (req,res) => {
+    res.render('index');
+ });
 
 // Use Routes
 app.use('/recipes', recipeRoute);
 app.use('/lists', listRoute);
+
+// Server
+const port = process.env.PORT || 3000;
+
+app.listen(port, () => {
+    console.log(`Recipe App located on port ${port}`)
+})
