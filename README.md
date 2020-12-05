@@ -3,9 +3,9 @@ The Recipe App uses the following technologies and javascript libraries:
 * MongoDB
 * Express.js
 * Node.js
-* express-handlebars
-* mongoose
-* body-parser
+* Express-handlebars
+* Mongoose
+* Body-parser
 
 ## What is this?
 The recipe app will keep track of various recipes that you like to cook and eat. Users will be able to add their own recipes, including ingredients and directions. They will also be able to categorize recipes and rate them.
@@ -21,7 +21,7 @@ The app will also function as a shopping list. Users will have the ability to ad
 6. As a user I need to edit direction for a recipe
 7. As a user I need to be able to remove directions to a recipe
 8. As a user I would like to create new shopping lists
-9. As a user I would like to be able to add ingredients to a shopping list while looking at a recipe
+9. As a user I would like to be able to add ingredients to a shopping list
 10. As a user I would like to be able to cross items off of a shopping list
 11. As a user I would like to be able to remove items off a shopping list
 12. As a user I would like to be able to change quantities on a shopping list
