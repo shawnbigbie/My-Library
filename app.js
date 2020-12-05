@@ -20,6 +20,23 @@ const methodOverride = require('method-override')
 const recipeRoute = require('./routes/recipe');
 const listRoute = require('./routes/list');
 
+// Connect to Database
+mongoose.connect(process.env.DB_CONNECTION,  { useNewUrlParser: true, useUnifiedTopology: true }, () =>
+    console.log('Connected to DB')
+);
+
+// Server
+const PORT = process.env.PORT || 3000; 
+
+// Default Index Route
+app.get('/', (req,res) => {
+    res.render('index');
+ });
+
+app.listen(PORT, () => {
+    console.log(`Recipe App located on port ${PORT}`)
+})
+
 // Handlebars Middleware
 app.engine('handlebars', exphbs({
     defaultLayout: 'main',
@@ -35,25 +52,8 @@ app.use(bodyParser.json());
 app.use(methodOverride('_method'))
 
 // Static Folder
-app.use(express.static(path.join(__dirname, 'public')));
-
-// Default Index Route
-app.get('/', (req, res) => {
-    res.render('index', {})
-});
+app.use(express.static(path.join(__dirname, '/public')));
 
 // Use Routes
 app.use('/recipes', recipeRoute);
 app.use('/lists', listRoute);
-
-// Connect to Database
-mongoose.connect(process.env.DB_CONNECTION,  { useNewUrlParser: true, useUnifiedTopology: true }, () =>
-    console.log('Connected to DB')
-);
-
-// Server
-const PORT = process.env.PORT || 3000; 
-
-app.listen(PORT, () => {
-    console.log(`Recipe App located on port ${PORT}`)
-})
