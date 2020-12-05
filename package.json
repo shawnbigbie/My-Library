@@ -8,15 +8,10 @@
     "dev": "nodemon app.js"
   },
   "repository": {
-    "type": "git",
-    "url": "git+https://github.com/shawnbigbie/My-Library.git"
+    "type": "git"
   },
   "author": "Shawn Bigbie",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/shawnbigbie/My-Library/issues"
-  },
-  "homepage": "https://github.com/shawnbigbie/My-Library#readme",
   "dependencies": {
     "@handlebars/allow-prototype-access": "^1.0.3",
     "body-parser": "^1.19.0",
