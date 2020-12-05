@@ -52,8 +52,8 @@ mongoose.connect(process.env.DB_CONNECTION,  { useNewUrlParser: true, useUnified
 );
 
 // Server
-const port = process.env.PORT || 3000; 
+const PORT = process.env.PORT || 3000; 
 
-app.listen(port, () => {
-    console.log(`Recipe App located on port ${port}`)
+app.listen(PORT, () => {
+    console.log(`Recipe App located on port ${PORT}`)
 })
