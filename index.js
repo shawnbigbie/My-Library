@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
 const app = express();
+const port = process.env.PORT || 3000;
 
 // Hide DB URL
 require('dotenv/config');
@@ -34,7 +35,7 @@ app.set('view engine', 'handlebars');
 
 // Body-Parser Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.use(express.json());
 
 // Static Folder
 app.use(express.static(path.join(__dirname, 'public')));
@@ -52,8 +53,6 @@ app.use('/recipes', recipeRoute);
 app.use('/lists', listRoute);
 
 // Server
-const port = process.env.PORT || 3000;
-
 app.listen(port, () => {
     console.log(`Recipe App located on port ${port}`)
 })
