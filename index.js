@@ -1,5 +1,6 @@
 // Package Varables
 const express = require('express');
+const path = require('path');
 const mongoose = require('mongoose');
 const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
@@ -31,15 +32,12 @@ app.engine('handlebars', exphbs({
 }));
 app.set('view engine', 'handlebars');
 
-app.set('views', __dirname + '/views')
-app.set('layout', 'layouts/layout')
-
 // Body-Parser Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // Static Folder
-app.use(express.static('public'))
+app.use(express.static(path.join(__dirname, 'public')));
 
 // MethodOverride Middleware
 app.use(methodOverride('_method'))
