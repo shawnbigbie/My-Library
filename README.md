@@ -32,11 +32,11 @@ The app will also function as a shopping list. Users will have the ability to ad
 17. As a user I need to be able to change a rating of a recipe
 
 ## Mockup / Sketch
-![Main](docs/Home-page.png)
-![Recipe List](docs/recipes-page.png)
-![Add Recipe](docs/add-recipe.png)
-![Shopping List](docs/lists-page.png)
-![Add Shopping List](docs/create-list.png)
+![Main](docs/sc1.PNG)
+![Recipe List](docs/sc2.png)
+![Add Recipe](docs/sc3.png)
+![Shopping List](docs/sc4.png)
+![Add Shopping List](docs/sc5.png)
 
 ## What did I learn and Why is it Important
 This project is going to be a great project due to the number of user interactions and data points that will be stored. It will require an interesting data model and multiple API endpoints. The app should be useful as well, it will allow users to keep track of a personal recipe collection and use it for planning and shopping.
