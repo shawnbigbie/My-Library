@@ -25,12 +25,18 @@ The app will also function as a shopping list. Users will have the ability to ad
 10. As a user I would like to be able to cross items off of a shopping list
 11. As a user I would like to be able to remove items off a shopping list
 12. As a user I would like to be able to change quantities on a shopping list
-13. As a user I would like to be able to categorize recipes
-14. As a user I would like to rate recipes
+13. As a user I would like to categorize recipes and change status of shopping lists
+14. As a user I would like to search recipes and lists by key words and titles
 15. As a user I need to be able to edit a recipes category
-16. As a user I need to be able to change a rating of a recipe
+16. As a user I would like to rate recipes
+17. As a user I need to be able to change a rating of a recipe
 
 ## Mockup / Sketch
+![Main](docs/Home-page.png)
+![Recipe List](docs/recipes-page.png)
+![Add Recipe](docs/add-recipe.png)
+![Shopping List](docs/lists-page.png)
+![Add Shopping List](docs/create-list.png)
 
 ## What did I learn and Why is it Important
 This project is going to be a great project due to the number of user interactions and data points that will be stored. It will require an interesting data model and multiple API endpoints. The app should be useful as well, it will allow users to keep track of a personal recipe collection and use it for planning and shopping.
